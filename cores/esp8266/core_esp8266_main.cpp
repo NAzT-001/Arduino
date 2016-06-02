@@ -23,6 +23,7 @@
 //This may be used to change user task stack size:
 //#define CONT_STACKSIZE 4096
 #include <Arduino.h>
+#include "Schedule.h"
 extern "C" {
 #include "ets_sys.h"
 #include "os_type.h"
@@ -107,6 +108,7 @@ static void loop_wrapper() {
         setup_done = true;
     }
     loop();
+    run_scheduled_functions();
     esp_schedule();
 }
 
